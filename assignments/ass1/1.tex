@@ -13,19 +13,19 @@
 \end{question}
 
 \begin{answer}
-
+    Since $e^x$, $x^3$, and $-2$ are all monotonically increasing functions, then the $max_{0 \leq \xi \leq 1}{\lvert f(\xi) \rvert}$ is gotten when $\xi = 1$. Hence, $max_{0 \leq \xi \leq 1}{\lvert f(\xi) \rvert} = e^1 + 1 - 2 = e - 1$.
 \end{answer}
 
 \subsection{Part (b)}
 
 \begin{question}
 \begin{center}
-    $f(x) = cos(2x) −1$ on $[−3,6]$
+    $f(x) = cos(2x) − 1$ on $[−3,6]$
 \end{center}
 \end{question}
 
 \begin{answer}
-
+    Since $\cos{(2x) \in [-1,1]}$, when $\cos{2x} = -1$, $\lvert f(x) \rvert$ gets its maximum, which is $1$, when $2k\pi + \pi$ for $k \in \mathbb{Z}$. Since when $\xi = \pi, \; \xi \in [-3,6]$, then $\max_{-3 \leq \xi \leq 6}{\lvert f(\xi) \rvert} = \lvert -1 - 1 \rvert = 2$.
 \end{answer}
 
 \subsection{Part (c)}
@@ -35,9 +35,22 @@
     $f(x) = x\sqrt{4-x^2}$ on $[0,2]$
 \end{center}
 \end{question}
-
+    
 \begin{answer}
-
+    Since $x \in [0,2]$, then $f(x) \geq 0$. Thus, $max_{0 \leq \xi \leq 2}{\lvert f(\xi) \rvert} = max_{0 \leq \xi \leq 2}{f(\xi)}$.
+    First, we can take the derivative of $f(x) = x\sqrt{4 - x^2}$, then we have $f'(x) = -\tfrac{x^2}{\sqrt{4-x^2}} + \sqrt{4-x^2}$. When $f(x)$ takes its extreme value, $f'(x) = 0$. Then,
+    \begin{align}
+        & -\tfrac{x^2}{\sqrt{4-x^2}} + \sqrt{4-x^2} = 0\\
+        \Rightarrow & \tfrac{x^2}{\sqrt{4-x^2}} = \sqrt{4-x^2}\\
+        \Rightarrow & x^2 = {\left(\sqrt{4-x^2}\right)}^2\\
+        \Rightarrow & x^2 = 4 - x^2\\
+        \Rightarrow & 2x^2 = 4\\
+        \Rightarrow & x^2 = 2\\
+        \Rightarrow & x = \pm \sqrt{2}
+    \end{align}
+    If we take the second derivative of $f(x)$, we would have $f''(x) = -\tfrac{3x}{\sqrt{4-x^2}}-\tfrac{x^3}{\left(\sqrt{4-x^2}\right)^{3}}$. Then substitute $x = \sqrt{2}$ into the second derivative, we have $f''(\sqrt{2}) = \tfrac{3\sqrt{2}}{\sqrt{2}} - \tfrac{2\sqrt{2}}{2\sqrt{2}} = -3 - 1 = -4 < 0$.
+    
+    Hence, $x = \sqrt{2}$ lets $f(x)$ takes its maximum. Since when $\xi = \sqrt{2}$, $\xi \in [0,2]$, then $max_{0 \leq \xi \leq 2}{\lvert f(\xi) \rvert} = \lvert \sqrt{2}\cdot\sqrt{4 - {(\sqrt{2})}^2} \rvert = \lvert \sqrt{2}\cdot\sqrt{4-2} \rvert = \sqrt{2}\cdot\sqrt{2} = 2$.
 \end{answer}
 
 \subsection{Part (d)}
@@ -49,7 +62,19 @@
 \end{question}
 
 \begin{answer}
-
+    Taking the first derivative of $f(x)$, we have $f'(x) = 3x^2 - 4$. Then, by setting $f'(x) = 3x^2 - 4 = 0$, we can get $x$ which could result into the extreme value of $f(x)$. Then:
+    \begin{align}
+        & 3x^2 = 4\\
+        \Rightarrow & x^2 = \tfrac{4}{3}\\
+        \Rightarrow & x = \pm \tfrac{2\sqrt{3}}{3}
+    \end{align}
+    If we take the second derivative of $f(x)$, we would have $f''(x) = 6x$. Since $f\left(\tfrac{2\sqrt{3}}{3}\right) = 4\sqrt{3} > 0$, and $f\left(-\tfrac{2\sqrt{3}}{3}\right) = -4\sqrt{3} < 0$, we know that when $x = \tfrac{2\sqrt{3}}{3}$, $f(x)$ takes its minimum, and when $x = -\tfrac{2\sqrt{3}}{3}$, $f(x)$ takes its maximum. Since $1 < \tfrac{2\sqrt{3}}{3} < 2$, and $-\tfrac{2\sqrt{3}}{3} < 1$, we could test that when $\xi = 1, 2, \text{ or } \tfrac{2\sqrt{3}}{3}$, which one will give the maximal $\lvert f(\xi) \rvert$. 
+    \begin{align}
+        & \lvert f(1) \rvert = \lvert 1 - 4 + 2 \rvert = \lvert -1 \rvert = 1\\
+        & \lvert f(2) \rvert = \lvert 8 - 8 + 2 \rvert = \lvert 2 \rvert = 2\\
+        & \left\lvert f\left(\tfrac{2\sqrt{3}}{3}\right) \right\rvert = \left\lvert \tfrac{8\sqrt{3}}{9} - \tfrac{8\sqrt{3}}{3} + 2\right\rvert = \left\lvert 2 - \tfrac{16\sqrt{3}}{9} \right\rvert = \tfrac{16\sqrt{3}}{9} - 2
+    \end{align}
+    Since $2 > \tfrac{16\sqrt{3}}{9} - 2 > 1$, $max_{1 \leq \xi \leq 2}{\lvert f(\xi) \rvert} = 2$.
 \end{answer}
 
 \subsection{Part (e)}
@@ -61,7 +86,7 @@
 \end{question}
 
 \begin{answer}
-
+    Since $\xi \in [1,2]$, then $\xi + 1 \in [2,3]$. Because $\xi + 1 \in [2,3] \subseteq \left[\tfrac{\pi}{2},\pi\right]$, then on the interval $[1,2]$, $\cos{(\xi+1)}$ is monotonically decreasing. Since $e^x$ is a monotonically increasing function, then if we want $\lvert f(\xi) \rvert$ to be maximal, we want $\cos{(\xi+1)}$ to be maximal. Hence, because $f(\xi) > 0$, then $\lvert f(\xi) \rvert = f(\xi)$, when $\xi = 1$, $max_{1 \leq \xi \leq 2}{\lvert f(\xi) \rvert} = e^{cos(2)}$.
 \end{answer}
 
 \subsection{Part (f)}
@@ -74,5 +99,5 @@
 \end{question}
 
 \begin{answer}
-
+    Since $\xi \in [-3,0]$, then $\xi + 2 \in [-1,2]$. Since $e^x$ is a monotonically increasing function, then if we want $\lvert f(\xi) \rvert$ to be maximal, we want $-\cos{(\xi+2)}$ to be maximal, therefore, we want $\cos{\xi + 2}$ to be as small as possible. Because $\xi + 2 \in [-1,2] \subseteq \left[-\tfrac{\pi}{2},\pi\right]$, then based on what we know about the $\cos$ function, when $\xi + 2 = 2$, $\cos{\xi + 2}$ is the smallest.  Hence, because $f(\xi) > 0$, then $\lvert f(\xi) \rvert = f(\xi)$, when $\xi = 2$, $max_{-3 \leq \xi \leq 0}{\lvert f(\xi) \rvert} = e^{-cos(2)}$.
 \end{answer}

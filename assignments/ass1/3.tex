@@ -9,5 +9,41 @@
 \end{question}
 
 \begin{answer}
-    
+    I used the following function and codes in $\MATLAB$ to compute the factorial of every other integer from $2$ to $20$.
+    \begin{verbatim}
+                for i = 2:20
+            F = fact(i);
+            fprintf('%d! = %d\n', i, F);
+        end
+        
+        function F = fact(x)
+            F = 1;
+            while x ~= 0
+                F = F*x;
+                x = x-1;
+            end
+        end
+    \end{verbatim}
+    And $\MATLAB$ gives me the result as the following:
+    \begin{verbatim}
+        2! = 2
+        3! = 6
+        4! = 24
+        5! = 120
+        6! = 720
+        7! = 5040
+        8! = 40320
+        9! = 362880
+        10! = 3628800
+        11! = 39916800
+        12! = 479001600
+        13! = 6227020800
+        14! = 87178291200
+        15! = 1307674368000
+        16! = 20922789888000
+        17! = 355687428096000
+        18! = 6402373705728000
+        19! = 121645100408832000
+        20! = 2432902008176640000
+    \end{verbatim}
 \end{answer}

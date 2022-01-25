@@ -11,7 +11,30 @@
 \end{question}
 
 \begin{answer}
-    
+    We could first compute the first, second, third, and fourth derivatives of $f(x)$:
+    \begin{align}
+        f'(x) & = e^x\sin{(x)} + e^x\cos{(x)}\\
+        f''(x) & = e^x\sin{(x)} + 2e^x\cos{(x)} - e^x\sin{(x)} = 2e^x\cos{(x)}\\
+        f'''(x) & = 2e^x\cos{(x)} - 2e^x\sin{(x)}\\
+        f^{(4)}(x) & = 2e^x\cos{(x)} - 2e^x\sin{(x)} - 2e^x\sin{(x)} - 2e^x\cos{(x)} = -4e^x\sin{(x)}
+    \end{align}
+    Then,
+    \begin{equation}
+        \begin{aligned}
+        P_{3}(x) & = e^0\sin{(0)} + (e^0\sin{(0)} + e^0\cos{(0)})(x-0) + \tfrac{2e^0\cos{(0)}}{2}(x-0)^2\\
+        &+ \tfrac{2e^0cos{(0)} - 2e^0\sin{(0)}}{6}(x-0)^3\\
+        & = 0 + (0 + 1)x + \tfrac{2}{2}x^2 + \tfrac{2 - 0}{6}x^3\\
+        &= x + x^2 + \tfrac{x^3}{3}
+        \end{aligned}
+    \end{equation}
+    \begin{equation}
+        \begin{aligned}
+        P_{4}(x) & = e^0\sin{(0)} + (e^0\sin{(0)} + e^0\cos{(0)})(x-0) + \tfrac{2e^0\cos{(0)}}{2}(x-0)^2\\
+        &+ \tfrac{2e^0cos{(0)} - 2e^0\sin{(0)}}{6}(x-0)^3 + \tfrac{-4e^0\sin{(0)}}{24}(x-0)^4\\
+        & = 0 + (0 + 1)x + \tfrac{2}{2}x^2 + \tfrac{2 - 0}{6}x^3 + 0x^4\\
+        & = x + x^2 + \tfrac{x^3}{3}
+        \end{aligned}
+    \end{equation}
 \end{answer}
 
 \subsection{Part (b)}
@@ -21,7 +44,9 @@
 \end{question}
 
 \begin{answer}
+    When using the third-order Taylor series, $f(0.1) = 0.1 + (0.1)^2 + \tfrac{(0.1)^3}{3} \approx 0.1 + 0.01 + 0.00067 = 0.11067$, and the error term is $\left\lvert \tfrac{-4e^{\xi(x)}\sin{(\xi(x))}}{24}(0.1-0)^4\right\rvert = 0.0001\tfrac{e^{\xi(x)}\sin{(\xi(x))}}{6}$, for $\xi(x) \in [0,0.1]$.
     
+    When using the fourth-order Taylor series, $f(0.1) = 0.1 + (0.1)^2 + \tfrac{(0.1)^3}{3} \approx 0.1 + 0.01 + 0.00067 = 0.11067$. Since the fifth derivative of $f(x)$ is $f^{5}(x) = -4e^x\sin{(x)} - 4e^x\cos{(x)}$, then the error term is $\left \lvert\tfrac{-4e^{\xi(x)}\sin{(\xi(x))} - 4e^{\xi(x)}\cos{(\xi(x))}}{120}(0.00001-0)^5\right\rvert = 0.00001\tfrac{e^{\xi(x)}\sin{(\xi(x))} + e^{\xi(x)}\cos{(\xi(x))}}{30}$, for $\xi(x) \in [0,0.1]$.
 \end{answer}
 
 \subsection{Part (c)}
@@ -31,7 +56,15 @@
 \end{question}
 
 \begin{answer}
+    For the third-order Taylor series, the upper bound for the error term is 
     
+    $0.0001\tfrac{e^{0.1}\sin{(0.1)}}{6} \approx 0.0000000$, when $\xi(x) = 0.1$. Then the upper bound for the approximation is $0.1106667+0.0000000 = 0.1106667$.
+    
+    For the fourth-order Taylor series, the upper bound for the error term is 
+    
+    $0.00001\tfrac{e^{0}\sin{(0)} + e^{0}\cos{(0)}}{30} = 0.00001\tfrac{1}{30} \approx 0.0000003$, when $\xi(x) = 0$. Then the upper bound for the approximation is $0.1106667 + 0.0000003 = 0.1106670$.
+    
+    The first approximation is better to use for $f(0.1)$.
 \end{answer}
 
 \subsection{Part (d)}
@@ -39,7 +72,7 @@
 \begin{question}
    (Bonus: no points off for wrong answers) Why do you think the approximation you chose is better? If you chose based on error bounds, what makes that approximation have less error?
 \end{question}
-
-\begin{answer}
     
+\begin{answer}
+    The reason I think the first approximation is better is that the error for the first method (0.0000000) is smaller than the error for the second method (0.0000003) based on the computation in the Part (d).
 \end{answer}
