@@ -1,0 +1,28 @@
+\section{Question 2}
+
+\subsection{Part a}
+
+\begin{question}
+    Find the limit of the sequence $p_n = 10^{-2^n}$, and show that the sequences converge quadratically to that limit.
+\end{question}
+
+\begin{answer}
+    $\lim_{n \to \infty}{10^{-2^n}} = 0$, since $\lim_{n \to \infty}{-2^n} = -\infty$ and $\lim_{n \to -\infty}{10^n} = n$.
+    
+    \begin{proof}
+        Since $\lim_{n \to \infty}{\tfrac{\lvert p_{n+1} - 0 \rvert}{{\lvert p_n - 0 \rvert}^2}} = \lim_{n \to \infty}{\tfrac{\lvert 10^{-2^{n+1}} \rvert}{{\lvert 10^{-2^{n}}\rvert}^2}} = \lim_{n \to \infty}{\tfrac{\lvert 10^{-2^{n+1}} \rvert}{\lvert 10^{-2^{n+1}}\rvert}} = 1$, we know that $\lambda = 1$ and the sequences converges quadratically to $0$.
+    \end{proof}
+\end{answer}
+
+\subsection{Part b}
+
+\begin{question}
+    Show that the sequence $p_n = 10^{-n^k}$ does not converge quadratically or linearly to its limit.
+\end{question}
+    
+\begin{answer}
+    \begin{proof}
+        $\lim_{n \to \infty}{10^{-n^k}} = 0$, then the limit of the sequence is $0$. We want to show that the sequence does not converge quadratically or linearly to $0$. $\lim_{n \to \infty}{\tfrac{\lvert p_{n+1} - 0 \rvert}{\lvert p_n - 0 \rvert}} = \lim_{n \to \infty}{\tfrac{\lvert 10^{-{(n+1)}^k} - 0 \rvert}{\lvert 10^{-n^k} - 0 \rvert}} = \lim_{n \to \infty}{10^{n^k - {(n+1)}^k}} = DNE$ shows that the sequence does not converge linearly. $\lim_{n \to \infty}{\tfrac{\lvert p_{n+1} - 0 \rvert}{{\lvert p_n - 0 \rvert}^2}} = \lim_{n \to \infty}{\tfrac{\lvert 10^{-{(n+1)}^k} - 0 \rvert}{{\lvert 10^{-n^k} - 0 \rvert}^2}} = \lim_{n \to \infty}{10^{2n^k - {(n+1)}^k}} = DNE$ shows that the sequence does not converge quadratically.
+        
+    \end{proof}
+\end{answer}
