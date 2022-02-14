@@ -1,0 +1,85 @@
+\section{Question 1}
+
+\begin{question}
+    Use \verb+fzerogui.m+ (or \verb+fzero.m+) to solve the following equations. Give tables of each subsequent iteration (each $p$ value), and the function value of each $p$ value of the form 
+    \begin{tabular}
+        {c|c}
+        $p$ & $f(p)$ \\\hline
+        & 
+    \end{tabular}
+    to evaluate convergence. What kind of convergence do you see here? 
+\end{question}
+
+\subsection{Part a}
+
+\begin{question}
+    $x^4-2x^3-4x^2+4x+4=0$, with starting interval $[2,3]$
+\end{question}
+
+\begin{answer}
+    I implement the following code using the function \textit{fzerogui} to find the solution.
+    \begin{verbatim}
+        f1 =  @(x) x^4 - 2*x^3 - 4*x^2 + 4*x + 4;
+        %[choice1,sol1] = fzerogui(f1,[2,3]);
+        for i = 3:11
+           f1p = f1(sol1(i, :));
+           fprintf('f1p = %.15f\n',f1p);
+        end
+    \end{verbatim}
+    I got the solution as shown in the Table \ref{tab:tab1}.
+    \begin{table}[H]
+        \centering
+        \caption{Results for question 1(a)}
+        \label{tab:tab1}
+        \begin{tabular}{c|c}
+            \textbf{p}                            & \textbf{f(p)}                          \\ \hline
+            2.36363636363636                      & -4.090704186872481                     \\ \hline
+            2.68181818181818                      & -0.890389146916196                     \\ \hline
+            2.75093439183099                      & 0.366190613560851                      \\ \hline
+            2.73079264822851                      & -0.023776101306563                     \\ \hline
+            2.73202068159168                      & -0.000570208481244                     \\ \hline
+            \multicolumn{1}{l|}{2.73205080955868} & \multicolumn{1}{l}{0.000000037663378}  \\ \hline
+            2.73205080756880                      & -0.000000000001462                     \\ \hline
+            \multicolumn{1}{l|}{2.73205080756888} & \multicolumn{1}{l}{-0.000000000000002} \\ \hline
+            \multicolumn{1}{l|}{2.73205080756888} & \multicolumn{1}{l}{0.000000000000025} 
+        \end{tabular}
+    \end{table}
+    From the result, we can see that it performs a convergence that is faster than the linear convergence but slower than the quadratic convergence, because the nonzero is sometimes the same as the previous one and sometimes twice smaller than the previous one.
+\end{answer}
+
+\subsection{Part b}
+
+\begin{question}
+    $x+1-2\sin(\pi x) = 0$ with starting interval $[0.5,1]$
+\end{question}
+
+\begin{answer}
+    I implement the following code using the function \textit{fzerogui} to find the solution.
+    \begin{verbatim}
+        f2 =  @(x) x + 1 - 2*sin(pi*x);
+        %[choice2,sol2] = fzerogui(f2,[0.5,1]);
+        for i = 3:11
+           f2p = f2(sol2(i, :));
+           fprintf('f2p = %.15f\n',f2p);
+        end
+    \end{verbatim}
+    I got the solution as shown in the Table \ref{tab:tab2}.
+    \begin{table}[H]
+        \centering
+        \caption{Results for question 1(b)}
+        \label{tab:tab2}
+        \begin{tabular}{c|c}
+            \textbf{p}                             & \textbf{f(p)}                          \\ \hline
+            0.600000000000000                      & -0.302113032590307                     \\ \hline
+            0.732634229700907                      & 0.243408944293217                      \\ \hline
+            0.673453556516892                      & -0.036883532200023                     \\ \hline
+            0.681241108620718                      & -0.003223477755272                     \\ \hline
+            0.681977141463654                      & 0.000010262978295                      \\ \hline
+            \multicolumn{1}{l|}{0.681974805503626} & \multicolumn{1}{l}{-0.000000014232627} \\ \hline
+            0.681974808738633                      & -0.000000000000063                     \\ \hline
+            \multicolumn{1}{l|}{0.681974808738648} & \multicolumn{1}{l}{0.000000000000000}  \\ \hline
+            \multicolumn{1}{l|}{0.681974808738647} & \multicolumn{1}{l}{-0.000000000000002}
+        \end{tabular}
+    \end{table}
+    As in the previous part, we can see that it performs a convergence that is faster than the linear convergence but slower than the quadratic convergence, because the nonzero is sometimes the same as the previous one and sometimes twice smaller than the previous one.
+\end{answer}    
