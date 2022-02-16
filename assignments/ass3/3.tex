@@ -29,6 +29,19 @@
 \end{question}
 
 \begin{answer}
+    I plot using the code below
+    \begin{verbatim}
+        x = linspace(0,3,100);
+        P = log(x);
+        P1 = 2*log(0.5)*(x-1);
+        P2 = 2*log(0.5).*(x-1).*(x-1.5)+2*log(1.5).*(x-0.5).*(x-1);
+        P3 = -((4*log(0.5))/3)*(x-1).*(x-1.5).*(x-2) 
+        - 4*log(1.5)*(x-0.5).*(x-1).*(x-2) 
+        + ((4*log(2))/3)*(x-0.5).*(x-1).*(x-1.5);
+        plot(x,P,x,P1,x,P2,x,P3);
+        legend({'P','P1','P2','P3'},'Location','southeast'
+        ,'Orientation','horizontal');
+    \end{verbatim}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{Figure 5.jpg}
@@ -44,6 +57,19 @@
 \end{question}
 
 \begin{answer}
+    I plot using the following code
+    \begin{verbatim}
+        x = linspace(0,10,100);
+        P = log(x);
+        P1 = 2*log(0.5)*(x-1);
+        P2 = 2*log(0.5).*(x-1).*(x-1.5)+2*log(1.5).*(x-0.5).*(x-1);
+        P3 = -((4*log(0.5))/3)*(x-1).*(x-1.5).*(x-2) 
+        - 4*log(1.5)*(x-0.5).*(x-1).*(x-2) 
+        + ((4*log(2))/3)*(x-0.5).*(x-1).*(x-1.5);
+        plot(x,P,x,P1,x,P2,x,P3);
+        legend({'P','P1','P2','P3'},'Location','southeast',
+        'Orientation','horizontal');
+    \end{verbatim}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{Figure 6.jpg}

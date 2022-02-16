@@ -40,6 +40,19 @@
 \end{question}
 
 \begin{answer}
+    I used the following the code in \MATLAB to plot
+    \begin{verbatim}
+        x = linspace(0.03,2,100);
+        P = log(x);
+        P1 = x-1;
+        P2 = x-1-((x-2).^2)/2;
+        P3 = x-1-((x-2).^2)/2+((x-1).^3)/6;
+        P4 = x-1-((x-2).^2)/2+((x-1).^3)/6-((x-1).^4)/24;
+        P5 = 1-((x-2).^2)/2+((x-1).^3)/6-((x-1).^4)/24+((x-1).^5)/120;
+        plot(x,P,x,P1,x,P2,x,P3,x,P4,x,P5);
+        legend({'P','P1','P2','P3','P4','P5'},'Location','southeast',
+        'Orientation','horizontal');
+    \end{verbatim}
     \begin{figure}[H]
         \centering
         \includegraphics[width=1.0\textwidth]{Figure 3.jpg}
@@ -55,6 +68,19 @@
 \end{question}
 
 \begin{answer}
+    I used the following code to make the plot
+    \begin{verbatim}
+        x = linspace(.05,3.5,100);
+        P = log(x);
+        P1 = x-1;
+        P2 = x-1-((x-2).^2)/2;
+        P3 = x-1-((x-2).^2)/2+((x-1).^3)/6;
+        P4 = x-1-((x-2).^2)/2+((x-1).^3)/6-((x-1).^4)/24;
+        P5 = 1-((x-2).^2)/2+((x-1).^3)/6-((x-1).^4)/24+((x-1).^5)/120;
+        plot(x,P,x,P1,x,P2,x,P3,x,P4,x,P5);
+        legend({'P','P1','P2','P3','P4','P5'},'Location','southeast',
+        'Orientation','horizontal');
+    \end{verbatim}
     \begin{figure}[H]
         \centering
         \includegraphics[width=1.0\textwidth]{Figure 4.jpg}
