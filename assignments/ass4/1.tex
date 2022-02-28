@@ -11,7 +11,30 @@
 \end{question}
 
 \begin{answer}
-    
+    I used the Divided Difference Table \ref{tab:tab1} to find the interpolating polynomials of degree 1, 2 and 3.
+    % Please add the following required packages to your document preamble:
+    % \usepackage[table,xcdraw]{xcolor}
+    % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+    \begin{table}[H]
+        \centering
+        \caption{Divided Difference Table}
+        \label{tab:tab1}
+        \begin{tabular}{|c|c|l|l|l|}
+            \hline
+            \textbf{x0 = 1.1} & \cellcolor[HTML]{FFFFC7}f{[}x0{]} = 0.635 &                                              &                                                  &                                                    \\ \hline
+            \textbf{}         &                                           & \cellcolor[HTML]{FFFFC7}f{[}x0,x1{]} = 0.112 &                                                  &                                                    \\ \hline
+            \textbf{x1 = 2}   & f{[}x1{]} = 0.736                         &                                              & \cellcolor[HTML]{FFFFC7}f{[}x0,x1,x3{]} = -0.082 &                                                    \\ \hline
+            \textbf{}         &                                           & f{[}x1,x3{]} = -0.085                        &                                                  & \cellcolor[HTML]{FFFFC7}f{[}x0,x1,x3,x4{]} = 0.013 \\ \hline
+            \textbf{x3 = 3.5} & f{[}x3{]} = 0.608                         &                                              & f{[}x1,x3,x4{]} = -0.005                         &                                                    \\ \hline
+            \textbf{}         &                                           & f{[}x3,x4{]} = -0.112                        &                                                  &                                                    \\ \hline
+            \textbf{x4 = 7.1} & f{[}x4{]} = 0.204                         &                                              &                                                  &                                                    \\ \hline
+        \end{tabular}
+    \end{table}
+    \begin{align}
+        P_1(x) &= 0.635 + 0.112(x-1.1)\\
+        P_2(x) &= 0.635 + 0.112(x-1.1) - 0.082(x-1.1)(x-2)\\
+        P_3(x) &= 0.635 + 0.112(x-1.1) - 0.082(x-1.1)(x-2) + 0.013(x-1.1)(x-2)(x-3.5)
+    \end{align}
 \end{answer}
 
 \subsection{Part b}
@@ -19,3 +42,23 @@
 \begin{question}
     Find an upper bound on the absolute error in using the degree 2 polynomial to approximate $f(1.75)$.
 \end{question}
+
+\begin{answer}
+    Since $f(x) = xe^{-\tfrac{x}{2}}$, then 
+    \begin{align}
+        f'(x) &= (1-\tfrac{x}{2})e^{-\tfrac{x}{2}}\\
+        f''(x) &= (\tfrac{x}{4} - 1)e^{-\tfrac{x}{2}}\\
+        f'''(x) &= (\tfrac{3}{8} - \tfrac{1}{8}x)e^{-\tfrac{x}{2}}
+    \end{align}
+    Hence, the absolute error is $\vert R_2(x) \rvert = \left\lvert\tfrac{f'''(\xi)}{3!}(x-1.1)(x-2)(x-3.5)\right\rvert = \left\lvert\tfrac{(\tfrac{3}{8} - \tfrac{1}{8}\xi)e^{-\tfrac{\xi}{2}}}{6}(x-1.1)(x-2)(x-3.5)\right\rvert$.
+    
+    Then,
+    \begin{align}
+        \lvert R_2(1.75)\rvert &= \left\lvert\tfrac{(\tfrac{3}{8} - \tfrac{1}{8}\xi)e^{-\tfrac{\xi}{2}}}{6}(1.75-1.1)(1.75-2)(1.75-3.5)\right\rvert\\
+        &= \left\lvert\tfrac{(\tfrac{3}{8} - \tfrac{1}{8}\xi)e^{-\tfrac{\xi}{2}}}{6}(0.65\cdot(-0.25)\cdot(-1.75))\right\rvert\\
+        &= \left\lvert\tfrac{(\tfrac{3}{8} - \tfrac{1}{8}\xi)e^{-\tfrac{\xi}{2}}}{6}(0.284375)\right\rvert\\
+        &= \tfrac{0.284375\left\lvert(3-\xi)e^{-\tfrac{\xi}{2}}\right\rvert}{48}\\
+    \end{align}
+    By taking $\xi = 1.1, \, 2 \text{ and } 3$, we have that ${\left\lvert(3-\xi)e^{-\tfrac{\xi}{2}}\right\rvert}_{max} \approx 1.096$.
+    Hence, $\lvert R_2(1.75)\rvert \leq \tfrac{0.284375\cdot1.096}{48} \approx 0.006$. Therefore, the absolute error in using the degree 2 polynomial to approximate $f(1.75)$ is bounded by $0.006$.
+\end{answer}
