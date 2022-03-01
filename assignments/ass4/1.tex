@@ -40,7 +40,7 @@
 \subsection{Part b}
 
 \begin{question}
-    Find an upper bound on the absolute error in using the degree 2 polynomial to approximate $f(1.75)$.
+    Find an upper bound on the absolute error by using the degree 2 polynomial to approximate $f(1.75)$.
 \end{question}
 
 \begin{answer}
@@ -59,6 +59,6 @@
         &= \left\lvert\tfrac{(\tfrac{3}{4} - \tfrac{1}{8}\xi)e^{-\tfrac{\xi}{2}}}{6}(0.284375)\right\rvert\\
         &= \tfrac{0.284375\left\lvert(6-\xi)e^{-\tfrac{\xi}{2}}\right\rvert}{48}\\
     \end{align}
-    By taking $\xi = 1.1, \, 2 \text{ and } 3$, we have that ${\left\lvert(6-\xi)e^{-\tfrac{\xi}{2}}\right\rvert}_{max} \approx 1.096$.
-    \textbf{Hence}, $\lvert R_2(1.75)\rvert \leq \tfrac{0.284375\cdot1.096}{48} \approx 0.006$. Therefore, the absolute error in using the degree 2 polynomial to approximate $f(1.75)$ is bounded by $0.006$.
+    By taking $\xi \in [1.1,3.5]$, we have that ${\left\lvert(6-\xi)e^{-\tfrac{\xi}{2}}\right\rvert}_{max} = \left\lvert(6-1.1)e^{-\tfrac{1.1}{2}}\right\rvert \approx 2.827$.
+    Hence, $\lvert R_2(1.75)\rvert \leq \tfrac{0.284375\,\cdot\,2.827}{48} \approx 0.017$. Therefore, the absolute error in using the degree 2 polynomial to approximate $f(1.75)$ is bounded by $0.017$.
 \end{answer}

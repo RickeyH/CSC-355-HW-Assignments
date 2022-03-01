@@ -24,7 +24,7 @@
         {S_1}^{'}(x) &= b_1 + 2c_1(x-0.2) + 3d_1(x-0.2)^2\\
         {S_1}^{''}(x) &= 2c_1 + 6d_1(x-0.2)
     \end{align}
-    Using this information, we further know that the cubic polynomials follow the conditions:
+    Using this information, we further know that the cubic polynomials follow the conditions by matching the first and second derivatives of the inner nodes of two polynomials:
     \begin{align}
         {S_0}^{'}(0.2) = {S_1}^{'}(0.2) &\Rightarrow b_0 + 0.2c_0 + 0.03d_0 = b_1 \Rightarrow b_0 + 0.2c_0 + 0.03d_0 - b_1 = 0\\
         {S_0}^{''}(0.2) = {S_1}^{''}(0.2) &\Rightarrow 2c_0 + 0.6d_0 = 2c_1 \Rightarrow 2c_0 + 0.6d_0 - 2c_1 = 0\\
@@ -53,33 +53,33 @@
              1,0.1,0.01,0.001,0,0,0,0;
              0,0,0,0,1,0,0,0;
              0,0,0,0,1,0.1,0.01,0.001;
-             0,1,0.2,0.003,0,-1,0,0;
+             0,1,0.2,0.03,0,-1,0,0;
              0,0,2,0.6,0,0,-2,0;
              0,0,2,0,0,0,0,0;
-             0,0,0,0,0,2,0.6,0];
+             0,0,0,0,0,0,2,0.6];
         b = [0.29;0.56;0.56;0.81;0;0;0;0];
         % Using the backslash to solve the matrix equation
         x0 = A\b;
         % Using the inv function to solve the matrix equation
         x = inv(A)*b;
     \end{verbatim}
-    I tried two ways in \MATLAB to find the solution, which are $\backslash$ command and the \textit{inv()} function. The results given by the both methods are almost the same except the entry for $c_0$. The $\backslash$ method give a result of $-7.16428255408716e^{-16}$, while the \textit{inv()} method gives a result of $0$. I prefer the result given by the \textit{inv()} method, since we can see that $c_0 = 0$ by the second last row of the augmented matrix.
+    I tried two ways in \MATLAB to find the solution, which are $\backslash$ command and the \textit{inv()} function. The results given by the both methods are almost the same except the entry for $c_0$. The $\backslash$ method give a result of $-1.11022302462518e^{-17} \approx 0$, while the \verb+inv()+ method gives a result of $0$. I prefer the result given by the \verb+inv()+ method, since we can see that $c_0 = 0$ by the second last row of the augmented matrix.
     Hence the solution is the vector
     \begin{center}
         $\left[\begin{matrix}
-        0.2900\\
-        3.0253\\
+        0.29\\
+        2.75\\
         0\\
-        -32.5301\\
-        0.5600\\
-        2.9277\\
-        -9.7590\\
-        54.8193
+        -5.00\\
+        0.56\\
+        2.60\\
+        -1.50\\
+        5.00
         \end{matrix}\right]$
     \end{center}
-    Therefore the natural spline interpolating the data given is
+    Therefore, the natural spline interpolating the data is
     \begin{align}
-        S_0(x) &= 0.2900 + 3.0253(x-0.1) - 32.5301(x-0.1)^3\\
-        S_1(x) &= 0.5600 + 2.9277(x-0.2) - 9.7590(x-0.2)^2 + 54.8193(x-0.2)^3
+        S_0(x) &= 0.29 + 2.75(x-0.1) - 5(x-0.1)^3\\
+        S_1(x) &= 0.56 + 2.6(x-0.2) - 1.5(x-0.2)^2 + 5(x-0.2)^3
     \end{align}
 \end{answer}
