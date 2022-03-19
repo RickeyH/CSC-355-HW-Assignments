@@ -5,5 +5,25 @@
 \end{question}
 
 \begin{answer}
-    
+    We could first divide the interval into $\tfrac{n}{3}$ sub-intervals, then we could use Simpson's Three-Eight's rule to do the numerical integral on each subinterval.
+    \begin{align}
+        [x_0,x_3] &= \tfrac{3h}{8}[f(x_0) + 3f(x_1) + 3f(x_2) + f(x_3)]\\
+        [x_3,x_6] &= \tfrac{3h}{8}[f(x_3) + 3f(x_4) + 3f(x_5) + f(x_6)]\\
+        & \vdots \\
+        [x_{n-6},x_{n-3}] &= \tfrac{3h}{8}[f(x_{n-6}) + 3f(x_{n-5}) + 3f(x_{n-4}) + f(x_{n-3})\\
+        [x_{n-3},x_{n}]] &= \tfrac{3h}{8}[f(x_{n-3}) + 3f(x_{n-2}) + 3f(x_{n-1}) + f(x_n)]
+    \end{align}
+    By the Simpson's Three-Eight rule, The error term for each approximation is $-\tfrac{h^5}{80}f^{(4)}(\xi)$. Then, when we sum up the error terms, we would have
+    \begin{align}
+        \epsilon &= -\tfrac{h^5}{80}\sum_{k = 0}^{n-3}f^{(4)}(\xi_k)\\
+        &= -\tfrac{h^4}{80}\cdot\tfrac{b-a}{n}\sum_{k = 0}^{n-3}f^{(4)}(\xi_k)\\
+        &= -\tfrac{h^4\cdot(b-a)}{80}f^{(4)}(\mu), \; \mu \in (a,b)
+    \end{align}
+    Hence, the numerical integration over n intervals based on Simpson's Three-Eight's rule would be
+    \begin{equation}
+        \begin{aligned}
+            \int_{x_0}^{x_n}f(x) \,dx &= \tfrac{3h}{8}[f(x_0) + 3f(x_1) + 3f(x_2) + 2f(x_3) + 3f(x_4) + 3f(x_5) + 2f(x_6) + \cdots + 2f(x_{x-3})\\
+            &+ 3f(x_{n-2}) + 3f(x_{n-1}) + f(x_n)] - \tfrac{h^4\cdot(b-a)}{80}f^{(4)}(\mu), \; \mu \in (a,b)\\
+        \end{aligned}
+    \end{equation}
 \end{answer}

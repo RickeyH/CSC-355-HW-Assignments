@@ -1,7 +1,7 @@
 \section{Question 3}
 
 \begin{question}
-    Test your \verb+comp_simp+ \MATLAB function on the integral $\int_{0}^{4}{\tfrac{x}{x+e^x}}\,dx$ with $h = 1,10^{-1},10{-2},10^{−3},10^{−6}$. 
+    Test your \verb+comp_simp+ \MATLAB function on the integral $\int_{0}^{4}{\tfrac{x}{x+e^x}}\,dx$ with $h = 1,10^{-1},10^{-2},10^{−3},10^{−6}$. 
     
     Compute absolute errors using \MATLAB’s \verb+integral+ function to get the ‘true’ integral value and create a table of the error values and number of function evaluations used for each $h$. Your table should be of the form
     \begin{tabular}
@@ -14,5 +14,63 @@
 \end{question}
 
 \begin{answer}
-    
+    I used the following codes to test my result with the integral $\int_{0}^{4}{\tfrac{x}{x+e^x}}\,dx$.
+    \begin{verbatim}
+        %% Test for the integral in Q3
+        f = @(x) x./(x+exp(x));
+        trueS = integral(f,0,4);
+        % Test for h = 1
+        x1 = linspace(0,4,4/1+1);
+        fvals1 = f(x1);
+        S1 = comp_simp(fvals1,1);
+        abserror1 = abs(S1-trueS);
+        n1 = length(fvals1);
+        % Test for h = 10^{-1}
+        x2 = linspace(0,4,4/(10^(-1))+1);
+        fvals2 = f(x2);
+        S2 = comp_simp(fvals2,10^(-1));
+        abserror2 = abs(S2-trueS);
+        n2 = length(fvals2);
+        % Test for h = 10^{-2}
+        x3 = linspace(0,4,4/(10^(-2))+1);
+        fvals3 = f(x3);
+        S3 = comp_simp(fvals3,10^(-2));
+        abserror3 = abs(S3-trueS);
+        n3 = length(fvals3);
+        % Test for h = 10^{-3}
+        x4 = linspace(0,4,4/(10^(-3))+1);
+        fvals4 = f(x4);
+        S4 = comp_simp(fvals4,10^(-3));
+        abserror4 = abs(S4-trueS);
+        n4 = length(fvals4);
+        % Test for h = 10^{-6}
+        x5 = linspace(0,4,4/(10^(-6))+1);
+        fvals5 = f(x5);
+        S5 = comp_simp(fvals5,10^(-6));
+        abserror5 = abs(S5-trueS);
+        n5 = length(fvals5);
+        % Test for h = 10^{-8}
+        x6 = linspace(0,4,4/(10^(-8))+1);
+        fvals6 = f(x6);
+        S6 = comp_simp(fvals6,10^(-8));
+        abserror6 = abs(S6-trueS);
+        n6 = length(fvals6);
+    \end{verbatim}
+    The result from the test is shown in the Table \ref{tab:tab1}.
+    \begin{table}[H]
+    \centering
+    \caption{Results from testing function comp\_simp}
+    \label{tab:tab1}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{h} & \textbf{error}        & \textbf{function evaluations} \\ \hline
+    1          & 0.021474644346451     & 5                             \\ \hline
+    $10^{-1}$       & $1.090517407253966\times10^{-5}$ & 41                            \\ \hline
+    $10^{-2}$       & $1.166186702761252\times10^{-9}$ & 401                           \\ \hline
+    $10^{-3}$       & $1.169064844930290\times10^{-13}$ & 4001                          \\ \hline
+    $10^{-6}$       & $1.754152378907747\times10^{-14}$ & 4000001                       \\ \hline
+    $10^{-8}$       & $5.939693181744587\times10^{-14}$ & 400000001                     \\ \hline
+    \end{tabular}
+    \end{table}
+    When I test for $h = 10^{-8}$, \MATLAB spends far more time than the previous $5$ values of $h's$. The reason \MATLAB spends long time computing this example is that there are $400000001$ loops implemented by the function \verb+comp_simp+. I think $h = 10^{-6}$ is the best choice of all the options used, since it generates a result with the lowest error, and it doesn't result as much time as the $h=10^{-8}$ case requires.
 \end{answer}
