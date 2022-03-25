@@ -22,7 +22,7 @@
     Hence, the numerical integration over n intervals based on Simpson's Three-Eight's rule would be
     \begin{equation}
         \begin{aligned}
-            \int_{x_0}^{x_n}f(x) \,dx &= \tfrac{3h}{8}[f(x_0) + 3f(x_1) + 3f(x_2) + 2f(x_3) + 3f(x_4) + 3f(x_5) + 2f(x_6) + \cdots + 2f(x_{x-3})\\
+            \int_{x_0}^{x_n}f(x) \,dx &\approx \tfrac{3h}{8}[f(x_0) + 3f(x_1) + 3f(x_2) + 2f(x_3) + 3f(x_4) + 3f(x_5) + 2f(x_6) + \cdots + 2f(x_{x-3})\\
             &+ 3f(x_{n-2}) + 3f(x_{n-1}) + f(x_n)] - \tfrac{h^4\cdot(b-a)}{80}f^{(4)}(\mu), \; \mu \in (a,b)\\
         \end{aligned}
     \end{equation}
