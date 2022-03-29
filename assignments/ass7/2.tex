@@ -1,9 +1,37 @@
 \section{Question 2}
 
 \begin{question}
-    Use Newton’s method in \MATLAB for nonlinear systems to solve the system in (1) with an initial guess of \verb+[.1;.1;-.1]+ Use a tolerance of $10^{−10}$ and $50$ as the max number of iterations. Report the final solution and how many iterations it took to reach it. Compare the number of iterations to the example we ran in class $G(x) = \left[\begin{smallmatrix}3x_1 − cos(x_2x_3) − 0.5 = 0\\  {x_1}^2 −  625{x_2}^2 − 0.25 = 0\\ e^{−x_1x_2} + 20x_3 + \tfrac{10\pi−3}{3}  = 0\end{smallmatrix}\right]$ with the same initial guess. What is the reason for the difference? (besides the second equation being different - think about what changing the second equation does)
+    Use Newton’s method in \MATLAB for nonlinear systems to solve the system in (1) with an initial guess of \verb+[.1;.1;-.1]+ Use a tolerance of $10^{−10}$ and $50$ as the max number of iterations. Report the final solution and how many iterations it took to reach it. Compare the number of iterations to the example we ran in class $G(x) = \left[\begin{smallmatrix}3x_1 − cos(x_2x_3) − 0.5 = 0\\  {x_1}^2 −  81{(x_2+0.1)}^2 + \sin{(x_3)}− 1.06 = 0\\ e^{−x_1x_2} + 20x_3 + \tfrac{10\pi−3}{3}  = 0\end{smallmatrix}\right]$ with the same initial guess. What is the reason for the difference? (besides the second equation being different - think about what changing the second equation does)
 \end{question}
 
 \begin{answer}
-    
+    Implementing the \verb+newton_sys+ created in class in the code below 
+    \begin{verbatim}
+        %% Question 2
+        % function and Jacobian, assuming x is a vector with 2 components
+        F = @(x) [3*x(1)-cos(x(2)*x(3))-.5;
+            (x(1))^2-625*(x(2))^2+sin(x(3))-0.25;
+            exp(-x(1)*x(2))+20*x(3)+(10*pi-3)/3];
+        J = @(x) [3, x(3)*sin(x(2)*x(3)), x(2)*sin(x(2)*x(3));
+            2*x(1), -1250*x(2), 0;
+            -x(2)*exp(-x(1)*x(2)), -x(1)*exp(-x(1)*x(2)), 20];
+        
+        % intial guess
+        x0 = [0.1;0.1;-0.1];
+        
+        % set other parameters
+        tol = 10e-10;
+        maxiter = 50;
+        
+        % call newton_sys function here
+        p = newton_sys(F,J,x0,tol,maxiter);
+    \end{verbatim}
+    , we got the a solution to the non-linear system of equations
+    \begin{equation}
+        \left[\begin{matrix}
+            0.500015044704120\\
+            0.100485195731462\\
+            -0.521085445524410
+        \end{matrix}\right]
+    \end{equation}
 \end{answer}
