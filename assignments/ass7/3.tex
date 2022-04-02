@@ -5,5 +5,87 @@
 \end{question}
 
 \begin{answer}
+    I first implemented the Shamanskii method in \MATLAB using the following code
+    \begin{verbatim}
+        %% The function sham_sys
+        % The input are system of equations F, Jacobian J, the initial guess 
+        % p0, tolerance tol and the max number of iteration maxiter. The output is
+        % a vector of approximation p.
+        function p = sham_sys(F,J,p0,tol,maxiter)
+            i = 1;
+            while(i <= maxiter)
+                if(mod(i,2) == 1)
+                    q = J(p0);
+                    y = q\(-F(p0));
+                else
+                    y = q\(-F(p0));
+                end
+                x = p0 + y;
+                if (norm(y,2) < tol)
+                    break
+                end
+                p0 = x;
+                p(:,i) = p0;
+                i = i + 1;
+            end
+        end
+    \end{verbatim}
+    Then, I test the function on $F$ and $G$ with the same initial value, maximal number of iteration, and tolerance. The code I used is shown below:
+    \begin{verbatim}
+        %% Question 3
+        % function and Jacobian, assuming x is a vector with 3 components
+        F = @(x) [3*x(1)-cos(x(2)*x(3))-.5;
+            (x(1))^2-625*(x(2))^2-0.25;
+            exp(-x(1)*x(2))+20*x(3)+(10*pi-3)/3];
+        J = @(x) [3, x(3)*sin(x(2)*x(3)), x(2)*sin(x(2)*x(3));
+            2*x(1), -1250*x(2), 0;
+            -x(2)*exp(-x(1)*x(2)), -x(1)*exp(-x(1)*x(2)), 20];
+        
+        % intial guess
+        x0 = [0.1;0.1;-0.1];
+        
+        % set other parameters
+        tol = 10e-10;
+        maxiter = 50;
+        
+        % call newton_sys function here
+        p = sham_sys(F,J,x0,tol,maxiter);
+        %% another input
+        % function and Jacobian, assuming x is a vector with 3 components
+        G = @(x) [3*x(1)-cos(x(2)*x(3))-.5;
+            (x(1))^2-81*(x(2)+0.1)^2+sin(x(3))+1.06;
+            exp(-x(1)*x(2))+20*x(3)+(10*pi-3)/3];
+        J2 = @(x) [3, x(3)*sin(x(2)*x(3)), x(2)*sin(x(2)*x(3));
+            2*x(1), -162*(x(2)+0.1), cos(x(3));
+            -x(2)*exp(-x(1)*x(2)), -x(1)*exp(-x(1)*x(2)), 20];
+        
+        % intial guess
+        x0 = [0.1;0.1;-0.1];
+        
+        % set other parameters
+        tol = 10e-10;
+        maxiter = 50;
+        
+        % call newton_sys function here
+        p2 = sham_sys(G,J2,x0,tol,maxiter);
+    \end{verbatim}
+    Then for the input $F$, I got a result of
+    \begin{equation}
+        \left[\begin{matrix}
+            0.500000000000000\\
+            2.81952089189883\cdot 10^{-9}\\
+            -0.523598775527811
+        \end{matrix}\right]
+    \end{equation}
+    , and it took $35$ iterations to get this result, while for the input $G$, the function gave result of 
+    \begin{equation}
+        \left[\begin{matrix}
+            0.500000000000010\\
+            1.12406669361333\cdot 10^{-12}\\
+            -0.523598775598270
+        \end{matrix}\right]
+    \end{equation}
+    , and it took only $6$ iterations to get this result.
     
+    Comparing to the results from the Newton's method, the second entries of the results are different, and in general, the more iterations were taken using the Shamanshii method.
 \end{answer}
