@@ -5,5 +5,56 @@
 \end{question}
 
 \begin{answer}
+    Since $x + 2y + 3z = 10$, then $z = 10 - x - 2y$, hence point on the plane has coordinate of $(x,y,10 - x - 2y)$. Then the distance from this point to the point $(1,1,1)$ is $f(x,y) = \sqrt{(x-1)^2 + (y-1)^2 + (9 - x - 2y)^2}$. Hence $\nabla f(x,y) = \left[\begin{smallmatrix}\tfrac{2(x-1)-2(9-x-2y)}{\sqrt{(x-1)^2 + (y-1)^2 + (9 - x - 2y)^2}}\\\tfrac{2(y-1)-4(9-x-2y)}{\sqrt{(x-1)^2 + (y-1)^2 + (9 - x - 2y)^2}}\end{smallmatrix}\right]$.
+
+    I implement the method \verb+steep_descent+ using the following code
+    \begin{verbatim}
+        function [x, xhist] = steep_descent(f, G, x0, tol, maxiter)
+        i = 1;
+        alpha = .5;
+        
+        while i < maxiter
+            dk = -G(x0);
+            x = x0 + alpha.*dk;
+            fprintf("Iteration: %d; funciton value: %f; step size: %f;\n", i, ...
+                f(x0), norm(x-x0));
+            xhist(:,i) = x;
+            if norm(x - x0) < tol
+                break
+            else
+                if f(x) > f(x0)
+                    alpha = alpha/2;
+                else
+                    x0 = x;
+                end
+            end
+            i = i+1;
+        end
+    \end{verbatim}
+    Then, I used the code below to solve this optimation problem
+    \begin{verbatim}
+        f = @(x) sqrt((x(1)-1).^2 + (x(2)-1).^2 + (9 - x(1) - 2*x(2)).^2);
+        G = @(x) [(2*(x(1)-1)-2*(9-x(1)-2*x(2)))./(sqrt((x(1)-1).^2 ...
+            +(x(2)-1).^2+(9-x(1)-2*x(2)).^2));
+            (2*(x(2)-1)-4*(9-x(1)-2*x(2)))/(sqrt((x(1)-1).^2+(x(2)-1).^2 ...
+            +(9-x(1)-2*x(2))^2))];
+        x0 = [1;1];
+        tol = 10.^(-10);
+        maxiter = 5;
+        [x, xhist] = steep_descent(f, G, x0, tol, maxiter);
+    \end{verbatim}
+    \MATLAB gives me the a final solution of $(2,3)$ and final function value of $2.449490$ which is the distance from $(2,3,2)$ to $(1,1,1)$.
+    the iteration info is the following
+    \begin{table}[H]
+    \centering
+    \caption{Question 2 iteration info}
+    \label{tab:tab1}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{\#iter} & \textbf{function value} & \textbf{step size} \\ \hline
+    1               & 6.000000                & 2.236068           \\ \hline
+    2               & 2.449490                & $<10^{-10}$      \\ \hline
+    \end{tabular}
+    \end{table}
     
 \end{answer}

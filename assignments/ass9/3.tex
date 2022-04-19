@@ -1,0 +1,39 @@
+\section{Question 3}
+
+\begin{question}
+    For the nonlinear least squares model $y \approx x_1e^{x_2t}+x_3+x_4t$, determine the formulas for $f(\mat{x}), \mat{R}(\mat{x}), \mat{R}'(\mat{x})$ (the Jacobian of $\mat{R}$), $\nabla f(\mat{x})$, and the Gauss-Newton approximation for
+the Hessian $\nabla^2 f(\mat{x})$.
+\end{question}
+
+\begin{answer}
+    I have the following results.
+    \begin{align}
+    f(\mat{x}) &= \tfrac{1}{2}\sum_{i = 1}^{4}{(x_1e^{x_2t_i}+x_3+x_4t_i-y_i)^2}\\
+    \mat{R}(\mat{x}) &= \left[\begin{matrix}
+        x_1e^{x_2t_1}+x_3+x_4t_1-y_1\\
+        x_1e^{x_2t_2}+x_3+x_4t_2-y_2\\
+        x_1e^{x_2t_3}+x_3+x_4t_3-y_3\\
+        x_1e^{x_2t_4}+x_3+x_4t_4-y_4
+    \end{matrix}\right]\\
+    \mat{R}'(\mat{x}) &=  \left[\begin{matrix}
+        e^{x_2t_1} & t_1x_1e^{x_2t_1} & 1 & t_1\\
+        e^{x_2t_2} & t_2x_1e^{x_2t_2} & 1 & t_2\\
+        e^{x_2t_3} & t_3x_1e^{x_2t_3} & 1 & t_3\\
+        e^{x_2t_4} & t_4x_1e^{x_2t_4} & 1 & t_4
+    \end{matrix}\right]\\
+    \nabla f(\mat{x}) &= \left[\begin{matrix}
+        r_1\cdot e^{x_2t_1} & r_2\cdot t_1x_1e^{x_2t_1} & r_3 & r_4\cdot t_1\\
+        r_1\cdot e^{x_2t_2} & r_2\cdot t_2x_1e^{x_2t_2} & r_3 & r_4\cdot t_2\\
+        r_1\cdot e^{x_2t_3} & r_2\cdot t_3x_1e^{x_2t_3} & r_3 & r_4\cdot t_3\\
+        r_1\cdot e^{x_2t_4} & r_2\cdot t_4x_1e^{x_2t_4} & r_3 & r_4\cdot t_4
+    \end{matrix}\right]\\
+    & \text{, where } r_1 = x_1e^{x_2t_1}+x_3+x_4t_1-y_1,\; r_2 = x_1e^{x_2t_2}+x_3+x_4t_2-y_2\\
+    & r_3 = x_1e^{x_2t_3}+x_3+x_4t_3-y_3,\; r_4 = x_1e^{x_2t_4}+x_3+x_4t_4-y_4\\
+    \nabla^2 f(\mat{x}) &\approx \mat{R}'(\mat{x})^\top \mat{R}'(\mat{x}) = \left[\begin{matrix}
+        \sum_{i = 1}^{4}{e^{2x_2t_i}} & \sum_{i=1}^{4}{t_ix_1e^{2x_2t_i}} & \sum_{i = 1}^{4}{e^{x_2t_i}} & \sum_{i = 1}^{4}{t_ie^{x_2t_i}}\\
+        \sum_{i = 1}^{4}{t_ie^{2x_2t_i}} & \sum_{i=1}^{4}{t_i^2x_1e^{2x_2t_i}} & \sum_{i = 1}^{4}{t_ie^{x_2t_i}} & \sum_{i = 1}^{4}{t_i^2e^{x_2t_i}}\\
+        \sum_{i = 1}^{4}{e^{x_2t_i}} & \sum_{i=1}^{4}{t_ix_1e^{x_2t_i}} & 4 & \sum_{i = 1}^{4}{t_i}\\
+        \sum_{i = 1}^{4}{e^{x_2t_i}} & \sum_{i=1}^{4}{t_i^2x_1e^{x_2t_i}} & \sum_{i = 1}^{4}{t_1} & \sum_{i = 1}^{4}{t_i^2}
+    \end{matrix}\right]
+    \end{align}
+\end{answer}

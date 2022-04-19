@@ -1,0 +1,73 @@
+\section{Question 4}
+
+\begin{question}
+    Using the model from (3) and the following data, use your Gauss-Newton code in \MATLAB to minimize the residuals over parameters $x_1, x_2, x_3, x_4$. Use initial guess of \verb+[4;-1;6;2]+, a tolerance of $10^{-2}$, and 20 as the max number of iterations.
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c|c|c}
+            $t$ & 1 & 2 & 5 & 6 & 8 & 10 & 13 \\
+            \hline
+            $y$ & 9.9 & 12.4 & 22.7 & 26.3 & 33.5 & 40.7 & 51.5
+        \end{tabular} 
+    \end{center}
+Report the final solution you get, the number of iterations, and the norm of the 
+residual system $\mat{R}$ after each iteration in a table. 
+\end{question}
+
+\begin{answer}
+    I use the code in \MATLAB as follows.
+    \begin{verbatim}
+        t = [1;2;5;6;8;10;13];
+        y = [9.9;12.4;22.7;26.3;33.5;40.7;51.5];
+        
+        R = @(x) [x(1)*exp(t(1)*x(2)) + x(3) + x(4)*t(1)-y(1);
+            x(1)*exp(t(2)*x(2)) + x(3) + x(4)*t(2)-y(2);
+            x(1)*exp(t(3)*x(2)) + x(3) + x(4)*t(3)-y(3);
+            x(1)*exp(t(4)*x(2)) + x(3) + x(4)*t(4)-y(4)];
+        J = @(x) [exp(t(1)*x(2)), t(1)*x(1)*exp(t(1)*x(2)), 1, t(1);
+            exp(t(2)*x(2)), t(2)*x(1)*exp(t(2)*x(2)), 1, t(2);
+            exp(t(3)*x(2)), t(3)*x(1)*exp(t(3)*x(2)), 1, t(3);
+            exp(t(4)*x(2)), t(4)*x(1)*exp(t(4)*x(2)), 1, t(4)];
+        
+        
+        % intial guess
+        x0 = [4;-1;6;2];
+        
+        % set other parameters
+        tol = 10^(-2);
+        maxiter = 20;
+        
+        
+        % call newton_sys function here
+        [x,xhist] = gauss_newton(R,J,x0,tol,maxiter);
+
+        function [x,xhist] = gauss_newton(F,J,x0,tol,maxiter)
+        i = 1;
+        while (i <= maxiter)
+            x = x0 - inv(J(x0)'*J(x0))*(J(x0)'*F(x0));
+            fprintf("number of iterartion: %d; norm: %d\n", ...
+                i, norm(F(x)));
+            xhist(:,i) = x;
+            if (norm(F(x),2) < tol)
+                break;
+            end
+            x0 = x;
+            i = i + 1;
+        end
+    \end{verbatim}
+    The final answer it gives me is the following. 
+    \begin{equation}
+        x = \left[\begin{matrix}4.99273816760159\\-1.09008983338563\\4.60758825894480\\3.61420468577856\end{matrix}\right]
+    \end{equation}
+    The numbers of iterations and the norms of $\mat{R}$ after each iteration are shown in the Table \ref{tab:tab1}
+    \begin{table}[H]
+        \centering
+        \caption{Question 4 iteration info}
+        \label{tab:tab1}
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{\#iter} & \textbf{norm} \\ \hline
+            1               & 0.03022614    \\ \hline
+            2               & 0.0004.044285 \\ \hline
+        \end{tabular}
+    \end{table}
+\end{answer}

@@ -9,5 +9,28 @@
 \end{question}
 
 \begin{answer}
+    Since for $s = x_{k+1}-x_k$ and $y = F(x_{k+1}) - F(x_k)$, we have
+    \begin{equation}\label{eqn:Bbegin}
+        B_{k+1} = B_{k} + \tfrac{(y-B_ks)s^{T}}{s^{T}s}
+    \end{equation}
     
+    The Sherman-Morrison formula is state as
+    Suppose that $A$ is a nonsingular matrix and that $x$ and $t$ are vectors with $t^{T}A^{-1}x \neq -1$. Then $A + xt^{T}$ is nonsingular, and
+    \begin{equation}\label{eqn:SM}
+        {(A + xt^{T})}^{-1} = A^{-1} - \tfrac{A^{-1}xt^{T}A^{-1}}{1 + t^{T}A^{-1}x}
+    \end{equation}
+    Set $A = B_{k}$, $x = \tfrac{y - B_{k}s}{s^{T}s}$, and $t = s$, then from equation \ref{eqn:Bbegin}, we have:
+    \begin{equation}\label{eqn:Bk+1}
+        B_{k+1} = {(A+xt^{T})}^{T}
+    \end{equation}
+    Assume the assumption of the Sherman-Morrison formula holds for such $A$, $x$, and $t$. Then applying \ref{eqn:Bk+1} to equation \ref{eqn:SM}, we have
+    \begin{align}
+        {B_{k+1}}^{-1} &= {B_{k}}^{-1} - \tfrac{{B_{k}}^{-1}\tfrac{y - B_{k}s}{s^{T}s}s^{T}{B_{k}}^{-1}}{1 + s^{T}{B_{k}}^{-1}\tfrac{y - B_{k}s}{s^{T}s}}\\
+        &= {B_{k}}^{-1} - \tfrac{{B_{k}}^{-1}(y - B_{k}s)s^{T}{B_{k}}^{-1}}{s^{T}s + s^{T}{B_{k}}^{-1}(y - B_{k}s)}\\
+        &= {B_{k}}^{-1} - \tfrac{{B_{k}}^{-1}ys^{T}{B_{k}}^{-1} - {B_{k}}^{-1}B_{k}ss^{T}{B_{k}}^{-1}}{s^{T}s + s^{T}{B_{k}}^{-1}y - s^{T}{B_{k}}^{-1}B_{k}s}\\
+        &= {B_{k}}^{-1} - \tfrac{{B_{k}}^{-1}ys^{T}{B_{k}}^{-1} - ss^{T}{B_{k}}^{-1}}{s^{T}s + s^{T}{B_{k}}^{-1}y - s^{T}s}\\
+        &= {B_{k}}^{-1} - \tfrac{{B_{k}}^{-1}ys^{T}{B_{k}}^{-1} - ss^{T}{B_{k}}^{-1}}{s^{T}{B_{k}}^{-1}y}\\
+        &= {B_{k}}^{-1} - \tfrac{({B_{k}}^{-1}y - s)s^{T}{B_{k}}^{-1}}{s^{T}{B_{k}}^{-1}y}\\
+        &= {B_{k}}^{-1} + \tfrac{(s - {B_{k}}^{-1}y)s^{T}{B_{k}}^{-1}}{s^{T}{B_{k}}^{-1}y}
+    \end{align}
 \end{answer}

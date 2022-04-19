@@ -1,0 +1,47 @@
+\section{Question 2}
+
+\begin{question}
+    Prove that the Hessian of the nonlinear least squares objective function $f(\mat{x}) = \frac{1}{2} \mat{R}(\mat{x})^\top \mat{R}(\mat{x})$ is $\nabla^2 f(\mat{x}) = \mat{R}'(\mat{x})^\top \mat{R}'(\mat{x})+ \sum_{i=1}^m r_i(\mat{x})^\top \nabla^2 r_i(\mat{x})$.
+\end{question}
+
+\begin{answer}
+    \begin{proof}
+        \begin{equation}
+            \begin{aligned}
+                \nabla f(\mat{x}) &= \tfrac{1}{2}\mat{R}(\mat{x})^\top \mat{R}(\mat{x})
+                = \left[\begin{matrix}
+                    r_1\cdot\tfrac{\partial r_1}{\partial \mat{x_1}}+\cdots+r_n\cdot\tfrac{\partial r_m}{\partial \mat{x_1}}\\
+                    \vdots \\
+                    r_1\cdot\tfrac{\partial r_1}{\partial \mat{x_m}}+\cdots+r_m\cdot\tfrac{\partial r_m}{\partial \mat{x_m}}
+                \end{matrix}\right]\\
+                &= \left[\begin{matrix}
+                    \tfrac{\partial r_1}{\partial \mat{x_1}} & \cdots & \tfrac{\partial r_m}{\partial \mat{x_1}}\\
+                    \vdots&\ddots& \vdots\\
+                   \tfrac{\partial r_1}{\partial \mat{x_m}} & \cdots & \tfrac{\partial r_m}{\partial \mat{x_m}}
+                \end{matrix}\right] \left[\begin{matrix}
+                    r_1\\
+                    \vdots \\
+                   r_m
+                \end{matrix}\right] = \left[\begin{matrix}
+                    \tfrac{\partial r_1}{\partial \mat{x_1}} & \cdots & \tfrac{\partial r_1}{\partial \mat{x_m}}\\
+                    \vdots&\ddots& \vdots\\
+                    \tfrac{\partial r_m}{\partial \mat{x_1}} & \cdots & \tfrac{\partial r_m}{\partial \mat{x_m}}
+                \end{matrix}\right]^\top \left[\begin{matrix}
+                    r_1\\
+                    \vdots \\
+                   r_m
+                \end{matrix}\right]\\
+                &= \mat{R}'(\mat{x})^\top\mat{R}(\mat{x})
+            \end{aligned}
+        \end{equation}
+        Then take the gradient of the resukt above, we have
+        \begin{equation}
+            \begin{aligned}
+                    \nabla^2 f(\mat{x}) &= \tfrac{\partial \mat{R}'(\mat{x})^\top}{\partial \mat{x}}\mat{R}(\mat{x}) + \mat{R}'(\mat{x})^\top\tfrac{\partial \mat{R}(\mat{x})}{\partial \mat{x}} = \tfrac{\partial \mat{R}'(\mat{x})^\top}{\partial \mat{x}}\mat{R}(\mat{x}) + \mat{R}'(\mat{x})^\top\mat{R}'(\mat{x})\\
+                    &= \mat{R}'(\mat{x})^\top\mat{R}'(\mat{x}) + \mat{R}''(\mat{x})^\top \mat{R}(\mat{x}) = \mat{R}'(\mat{x})^\top\mat{R}'(\mat{x}) +  \sum_{i = 1}^{m}{\nabla^2 r_i(\mat{x})r_i(\mat{x})^\top}\\
+                    &=\mat{R}'(\mat{x})^\top\mat{R}'(\mat{x}) + \sum_{i = 1}^{m}{r_i(\mat{x})^\top\nabla^2 r_i(\mat{x})}
+            \end{aligned}
+        \end{equation}
+        Therefore, the desired statement is proved.
+    \end{proof}
+\end{answer}
